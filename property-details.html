@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oceanview Luxury Villa | Elite Residences – Premium Real Estate</title>
+    <meta name="description" content="Detailed information about Oceanview Luxury Villa – 5 bedrooms, 4 bathrooms, premium finishes and stunning ocean views.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #0f172a;
+            line-height: 1.6;
+            background: #fff;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        /* ========== HEADER ========== */
+        .site-header {
+            background: #fff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: #0f172a;
+        }
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: #b45309;
+            color: #fff;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+        }
+        .main-nav > a,
+        .nav-dropdown > a {
+            padding: 0.55rem 0.9rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #334155;
+            border-radius: 6px;
+            transition: color 0.2s, background 0.2s;
+        }
+        .main-nav > a:hover,
+        .nav-dropdown > a:hover,
+        .main-nav > a.active {
+            color: #b45309;
+            background: #fff7ed;
+        }
+        .nav-dropdown { position: relative; }
+        .nav-dropdown > a i { font-size: 0.7rem; margin-left: 0.25rem; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            min-width: 210px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+            padding: 0.5rem 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+        .nav-dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.65rem 1.2rem;
+            font-size: 0.92rem;
+            color: #334155;
+            transition: background 0.15s, color 0.15s;
+        }
+        .dropdown-menu a:hover {
+            background: #fff7ed;
+            color: #b45309;
+        }
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.4rem;
+            color: #0f172a;
+            cursor: pointer;
+        }
+
+        /* ========== BREADCRUMB ========== */
+        .breadcrumb {
+            background: #f8fafc;
+            padding: 0.9rem 0;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+        .breadcrumb a { color: #0f172a; }
+        .breadcrumb a:hover { color: #b45309; }
+
+        /* ========== PROPERTY GALLERY ========== */
+        .gallery-section { padding: 2rem 0 1rem; }
+        .main-image {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            height: 480px;
+            margin-bottom: 1rem;
+        }
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .gallery-thumbs {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+        }
+        .gallery-thumbs img {
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: border-color 0.2s, opacity 0.2s;
+        }
+        .gallery-thumbs img:hover,
+        .gallery-thumbs img.active {
+            border-color: #b45309;
+        }
+        .gallery-thumbs img.active { opacity: 0.9; }
+
+        /* ========== PROPERTY INFO LAYOUT ========== */
+        .property-content {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2.5rem;
+            padding: 2.5rem 0 5rem;
+        }
+
+        /* Left column */
+        .property-header {
+            margin-bottom: 1.8rem;
+        }
+        .property-status {
+            display: inline-block;
+            background: #b45309;
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 0.75rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.8rem;
+        }
+        .property-title {
+            font-size: clamp(1.7rem, 3vw, 2.2rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1.25;
+        }
+        .property-location {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: #64748b;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .property-location i { color: #b45309; }
+        .property-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #b45309;
+        }
+
+        .key-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 1.4rem 0;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 2rem;
+        }
+        .key-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+        .key-feature i {
+            color: #b45309;
+            font-size: 1.1rem;
+        }
+
+        .section-block {
+            margin-bottom: 2.5rem;
+        }
+        .section-block h3 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+        .section-block p {
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem 1.5rem;
+        }
+        .amenity-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+        .amenity-item i {
+            color: #16a34a;
+            font-size: 0.9rem;
+        }
+
+        /* Right column – Sidebar */
+        .sidebar-card {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.8rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 90px;
+        }
+        .sidebar-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+        .agent-info {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .agent-photo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .agent-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+        }
+        .agent-role {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+        .agent-contact {
+            font-size: 0.9rem;
+            color: #475569;
+            margin-top: 0.25rem;
+        }
+        .agent-contact i {
+            color: #b45309;
+            width: 16px;
+        }
+
+        .enquiry-form label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 0.35rem;
+        }
+        .enquiry-form input,
+        .enquiry-form textarea,
+        .enquiry-form select {
+            width: 100%;
+            padding: 0.7rem 0.9rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+        .enquiry-form input:focus,
+        .enquiry-form textarea:focus,
+        .enquiry-form select:focus {
+            outline: none;
+            border-color: #b45309;
+        }
+        .enquiry-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .btn-full {
+            width: 100%;
+            background: #b45309;
+            color: #fff;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-full:hover { background: #92400e; }
+        .btn-outline-full {
+            width: 100%;
+            background: transparent;
+            color: #b45309;
+            border: 2px solid #b45309;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            margin-top: 0.75rem;
+            transition: all 0.2s;
+        }
+        .btn-outline-full:hover {
+            background: #fff7ed;
+        }
+
+        /* Related properties */
+        .related-section {
+            background: #f8fafc;
+            padding: 4rem 0;
+        }
+        .related-section h2 {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+        }
+        .related-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .related-card:hover { transform: translateY(-5px); }
+        .related-card img {
+            height: 180px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .related-card-body { padding: 1.2rem; }
+        .related-card .price {
+            color: #b45309;
+            font-weight: 700;
+            font-size: 1.15rem;
+            margin-bottom: 0.3rem;
+        }
+        .related-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+        }
+        .related-card .loc {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* ========== FOOTER ========== */
+        .site-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 4rem 0 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .footer-logo { color: #fff; margin-bottom: 1.2rem; display: inline-flex; }
+        .footer-about {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .social-links {
+            display: flex;
+            gap: 0.7rem;
+        }
+        .social-links a {
+            width: 38px;
+            height: 38px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #cbd5e1;
+            transition: background 0.2s, color 0.2s;
+        }
+        .social-links a:hover {
+            background: #b45309;
+            color: #fff;
+        }
+        .footer-col h4 {
+            color: #fff;
+            font-size: 1.05rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+        .footer-col ul li { margin-bottom: 0.6rem; }
+        .footer-col ul a {
+            font-size: 0.93rem;
+            transition: color 0.2s;
+        }
+        .footer-col ul a:hover { color: #f59e0b; }
+        .contact-info li {
+            display: flex;
+            gap: 0.7rem;
+            margin-bottom: 0.9rem;
+            font-size: 0.93rem;
+            line-height: 1.5;
+        }
+        .contact-info i {
+            color: #b45309;
+            margin-top: 0.2rem;
+            width: 16px;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 1.4rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+        .footer-legal { display: flex; gap: 1.5rem; }
+        .footer-legal a:hover { color: #f59e0b; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 992px) {
+            .main-nav { display: none; }
+            .mobile-toggle { display: block; }
+            .main-nav.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: #fff;
+                padding: 1rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                gap: 0.3rem;
+            }
+            .nav-dropdown .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                padding-left: 1rem;
+                display: none;
+            }
+            .nav-dropdown.open .dropdown-menu { display: block; }
+            .property-content {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-card { position: static; }
+            .gallery-thumbs { grid-template-columns: repeat(3, 1fr); }
+            .related-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .main-image { height: 320px; }
+        }
+        @media (max-width: 576px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .amenities-grid { grid-template-columns: 1fr; }
+            .key-features { gap: 1rem; }
+            .gallery-thumbs { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <span class="logo-icon"><i class="fas fa-building"></i></span>
+                <span class="logo-text">Elite Residences</span>
+            </a>
+
+            <nav class="main-nav" id="mainNav">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+
+                <div class="nav-dropdown">
+                    <a href="properties.html" class="active">Properties <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="properties.html">All Properties</a>
+                        <a href="properties-for-sale.html">Properties for Sale</a>
+                        <a href="properties-for-rent.html">Properties for Rent</a>
+                        <a href="property-search.html">Search Properties</a>
+                    </div>
+                </div>
+
+                <div class="nav-dropdown">
+                    <a href="services.html">Services <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-menu">
+                        <a href="buy-property.html">Buying a Property</a>
+                        <a href="sell-property.html">Selling a Property</a>
+                        <a href="rental-services.html">Rental Services</a>
+                        <a href="services.html">Property Management</a>
+                    </div>
+                </div>
+
+                <a href="our-team.html">Our Team</a>
+                <a href="testimonials.html">Testimonials</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a> &nbsp;/&nbsp; 
+            <a href="properties.html">Properties</a> &nbsp;/&nbsp; 
+            <span>Oceanview Luxury Villa</span>
+        </div>
+    </div>
+
+    <!-- GALLERY -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="main-image">
+                <img id="mainPhoto" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1400&q=80" alt="Oceanview Luxury Villa – Main View">
+            </div>
+            <div class="gallery-thumbs">
+                <img class="active" src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=400&q=80" alt="Exterior" onclick="changePhoto(this)">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=400&q=80" alt="Living Area" onclick="changePhoto(this)">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=400&q=80" alt="Kitchen" onclick="changePhoto(this)">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=400&q=80" alt="Bedroom" onclick="changePhoto(this)">
+                <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cd00?auto=format&fit=crop&w=400&q=80" alt="Pool Area" onclick="changePhoto(this)">
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div class="property-content">
+
+            <!-- LEFT: Details -->
+            <div class="property-details">
+                <div class="property-header">
+                    <span class="property-status">For Sale</span>
+                    <h1 class="property-title">Oceanview Luxury Villa</h1>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i> Coastal Heights, Bayfront District
+                    </div>
+                    <div class="property-price">$2,850,000</div>
+                </div>
+
+                <div class="key-features">
+                    <div class="key-feature"><i class="fas fa-bed"></i> <strong>5</strong> Bedrooms</div>
+                    <div class="key-feature"><i class="fas fa-bath"></i> <strong>4</strong> Bathrooms</div>
+                    <div class="key-feature"><i class="fas fa-ruler-combined"></i> <strong>4,200</strong> sqft</div>
+                    <div class="key-feature"><i class="fas fa-car"></i> <strong>3</strong> Garage</div>
+                    <div class="key-feature"><i class="fas fa-calendar"></i> Built <strong>2021</strong></div>
+                </div>
+
+                <div class="section-block">
+                    <h3>Property Description</h3>
+                    <p>
+                        Welcome to this exceptional Oceanview Luxury Villa, a masterpiece of contemporary design 
+                        nestled in the prestigious Coastal Heights neighbourhood. Offering breathtaking panoramic 
+                        ocean views from nearly every room, this residence combines sophisticated architecture 
+                        with refined living spaces.
+                    </p>
+                    <p>
+                        The open-plan living and dining area features floor-to-ceiling glass walls that frame 
+                        the coastline, creating a seamless indoor-outdoor experience. A chef’s kitchen with 
+                        premium appliances, custom cabinetry and a large island anchors the heart of the home. 
+                        Five generously proportioned bedrooms include a luxurious primary suite with private 
+                        terrace, spa-inspired ensuite and walk-in wardrobe.
+                    </p>
+                    <p>
+                        Outdoor living is elevated by an infinity-edge pool, landscaped gardens, covered 
+                        entertainment terrace and multiple alfresco dining zones – perfect for both intimate 
+                        evenings and larger gatherings.
+                    </p>
+                </div>
+
+                <div class="section-block">
+                    <h3>Property Features &amp; Amenities</h3>
+                    <div class="amenities-grid">
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Infinity-edge swimming pool</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Ocean &amp; coastline views</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Gourmet chef’s kitchen</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Smart home system</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Underfloor heating</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Triple garage with storage</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Private elevator</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Home theatre / media room</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Wine cellar</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Landscaped gardens</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Outdoor kitchen &amp; BBQ</div>
+                        <div class="amenity-item"><i class="fas fa-check-circle"></i> Security system &amp; cameras</div>
+                    </div>
+                </div>
+
+                <div class="section-block">
+                    <h3>Location Highlights</h3>
+                    <p>
+                        Situated in one of the most sought-after coastal enclaves, this villa is moments from 
+                        pristine beaches, fine dining, boutique shopping and excellent schools. Easy access to 
+                        major transport routes and the city centre makes it ideal for both permanent residence 
+                        and a premium lifestyle investment.
+                    </p>
+                </div>
+            </div>
+
+            <!-- RIGHT: Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-card">
+                    <h3>Arrange an Inspection</h3>
+
+                    <div class="agent-info">
+                        <img class="agent-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=150&q=80" alt="Agent">
+                        <div>
+                            <div class="agent-name">James Thornton</div>
+                            <div class="agent-role">Senior Property Consultant</div>
+                            <div class="agent-contact"><i class="fas fa-phone"></i> +1 (555) 234-5678</div>
+                        </div>
+                    </div>
+
+                    <form class="enquiry-form" onsubmit="event.preventDefault(); alert('Thank you! Your enquiry has been received. We will contact you shortly.');">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" required placeholder="Your full name">
+
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" required placeholder="you@example.com">
+
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
+
+                        <label for="interest">I am interested in</label>
+                        <select id="interest">
+                            <option>Scheduling an inspection</option>
+                            <option>Requesting more information</option>
+                            <option>Making an offer</option>
+                            <option>General enquiry</option>
+                        </select>
+
+                        <label for="message">Message</label>
+                        <textarea id="message" placeholder="Tell us more about your requirements..."></textarea>
+
+                        <button type="submit" class="btn-full">Send Enquiry</button>
+                        <button type="button" class="btn-outline-full" onclick="alert('Inspection request noted. Our agent will contact you to confirm a time.')">
+                            <i class="fas fa-calendar-check"></i> Book Inspection
+                        </button>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- RELATED PROPERTIES -->
+    <section class="related-section">
+        <div class="container">
+            <h2>Similar Properties You May Like</h2>
+            <div class="related-grid">
+                <a href="property-details.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Mediterranean Villa">
+                    <div class="related-card-body">
+                        <div class="price">$2,650,000</div>
+                        <h4>Mediterranean-Style Villa</h4>
+                        <div class="loc"><i class="fas fa-map-marker-alt"></i> Sunset Cliffs</div>
+                    </div>
+                </a>
+                <a href="property-details.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cd00?auto=format&fit=crop&w=600&q=80" alt="Grand Estate">
+                    <div class="related-card-body">
+                        <div class="price">$4,200,000</div>
+                        <h4>Grand Estate Villa</h4>
+                        <div class="loc"><i class="fas fa-map-marker-alt"></i> Hillside Heights</div>
+                    </div>
+                </a>
+                <a href="property-details.html" class="related-card">
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=600&q=80" alt="Penthouse">
+                    <div class="related-card-body">
+                        <div class="price">$3,750,000</div>
+                        <h4>Skyline Penthouse Suite</h4>
+                        <div class="loc"><i class="fas fa-map-marker-alt"></i> Financial District</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo footer-logo">
+                        <span class="logo-icon"><i class="fas fa-building"></i></span>
+                        <span class="logo-text">Elite Residences</span>
+                    </a>
+                    <p class="footer-about">
+                        Premium real estate specialists delivering exceptional properties 
+                        and personalised service for discerning clients.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="properties.html">Properties</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="our-team.html">Our Team</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="buy-property.html">Buying a Property</a></li>
+                        <li><a href="sell-property.html">Selling a Property</a></li>
+                        <li><a href="rental-services.html">Rental Services</a></li>
+                        <li><a href="services.html">Property Management</a></li>
+                        <li><a href="property-search.html">Property Search</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> 125 Premium Avenue, Suite 400<br>Downtown District</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@eliteresidences.com</li>
+                        <li><i class="fas fa-clock"></i> Mon – Fri: 9:00 AM – 6:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Elite Residences. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mainNav = document.getElementById('mainNav');
+        mobileToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('open');
+        });
+
+        // Gallery image switcher
+        function changePhoto(thumb) {
+            document.getElementById('mainPhoto').src = thumb.src.replace('w=400', 'w=1400');
+            document.querySelectorAll('.gallery-thumbs img').forEach(img => img.classList.remove('active'));
+            thumb.classList.add('active');
+        }
+    </script>
+</body>
+</html>
